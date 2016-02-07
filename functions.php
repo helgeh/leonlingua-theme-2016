@@ -172,16 +172,18 @@ function add_active_class($classes, $item) {
 
 
 
-  add_theme_support( 'menus' );            // wp menus
-  register_nav_menus(                      // wp3+ menus
-    array( 
-      'main_nav' => 'The Main Menu',   // main nav in header
-      'footer_links' => 'Footer Links' // secondary nav in footer
-    )
-  );
+add_theme_support( 'menus' );            // wp menus
+register_nav_menus(                      // wp3+ menus
+  array( 
+    'main_nav' => 'The Main Menu',   // main nav in header
+    'footer_links' => 'Footer Links' // secondary nav in footer
+  )
+);
 
 
 function first_paragraph($content) {
   return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead">', $content, 1);
 }
 add_filter('the_content', 'first_paragraph');
+
+

@@ -14,9 +14,7 @@
 
         <div class="row">
           <article id="post-<?php the_ID(); ?>" <?php post_class('col-lg-12 post_content'); ?> role="article">
-            <heder></heder>
-            <section></section>
-							<?php the_content( "Read more &raquo;" ); ?>
+							<?php the_content(); ?>
               <?php
                 edit_post_link(
                   sprintf('Edit<span class="screen-reader-text"> "%s"</span>',

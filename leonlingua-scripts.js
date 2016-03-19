@@ -10,7 +10,7 @@
   //       $('#home > .navbar').addClass('navbar-transparent');
   // });
 
-  $("a[href='#']").click(function(e) {
+  jQuery("a[href='#']").click(function(e) {
     e.preventDefault();
   });
 
@@ -58,5 +58,13 @@
 
   //   return lines;
   // }
+
+
+  jQuery(".fancybox").fancybox({
+    margin : [5, 5, 5, 5],
+    autoSize: false,
+    width: '95%'
+  });
+ 
 
 })();

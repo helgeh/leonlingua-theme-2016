@@ -6,8 +6,10 @@ add_filter('show_admin_bar', '__return_false');
 function leonlingua_theme_styles()  
 {
   wp_register_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1.0', 'all' );
+  wp_register_style( 'fancybox', get_template_directory_uri() . '/css/jquery.fancybox.css', array(), '1.0', 'all' );
   wp_register_style( 'll-style', get_stylesheet_directory_uri() . '/style.css', array(), '1.0', 'all' );
   wp_enqueue_style( 'bootstrap' );
+  wp_enqueue_style( 'fancybox');
   wp_enqueue_style( 'll-style');
 }
 
@@ -22,12 +24,16 @@ function leonlingua_theme_js()
 
   wp_register_script('modernizr', get_template_directory_uri().'/js/modernizr.full.min.js');
 
+  wp_register_script('fancybox', get_template_directory_uri().'/js/jquery.fancybox.pack.js');
+
   wp_register_script('leonlingua_scripts', get_stylesheet_directory_uri().'/leonlingua-scripts.js');
 
   wp_enqueue_script('jquery');
   wp_enqueue_script('bootstrap', array('jQuery'), '1.1', true);
   
   wp_enqueue_script('modernizr', array('jQuery'), '1.1', true);
+
+  wp_enqueue_script('fancybox', array('jQuery'), '1.1', true);
 
   wp_enqueue_script('leonlingua_scripts', array('jQuery'), '1.1', true);
 }
@@ -187,3 +193,41 @@ function first_paragraph($content) {
 add_filter('the_content', 'first_paragraph');
 
 
+
+add_action( 'admin_init', 'my_tinymce_button' );
+
+function my_tinymce_button() {
+     if ( current_user_can( 'edit_posts' ) && current_user_can( 'edit_pages' ) ) {
+          add_filter( 'mce_buttons', 'my_register_tinymce_button' );
+          add_filter( 'mce_external_plugins', 'my_add_tinymce_button' );
+     }
+}
+
+function my_register_tinymce_button( $buttons ) {
+     array_push( $buttons, "button_lightbox" );
+     return $buttons;
+}
+
+function my_add_tinymce_button( $plugin_array ) {
+     $plugin_array['my_button_script'] = get_stylesheet_directory_uri() . '/js/mybuttons.js';
+     return $plugin_array;
+}
+
+add_action('admin_head', 'my_tinymce_button_styles');
+
+function my_tinymce_button_styles() {
+  echo '<style>
+  i.mce-i-button_lightbox {
+    font: 400 20px/1 dashicons;
+    padding: 0 2px 0 0;
+    vertical-align: top;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-left: -2px;
+  }
+  i.mce-i-button_lightbox:before {
+      content: "\f232";
+  }
+  </style>';
+}

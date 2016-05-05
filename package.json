@@ -4,11 +4,11 @@
   "description": "Theme for Leonlingua homepage. Looks like the 2015 version with wpbs-theme as a base and then Bootswatch theme Journal on top. And some small customizations. The theme is no longer set up as child theme.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helgeh/ll-wp-2015.git"
+    "url": "git+https://github.com/helgeh/leonlingua-theme-2016.git"
   },
   "author": "helge.hofstad@gmail.com",
   "bugs": {
-    "url": "https://github.com/helgeh/ll-wp-2015/issues"
+    "url": "https://github.com/helgeh/leonlingua-theme-2016/issues"
   },
   "homepage": "http://www.leonlingua.com/"
 }

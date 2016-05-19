@@ -22,5 +22,8 @@
       width: '95%'
     });
 
+    // this is for the dev panel
+    $('body').addClass('loaded');
+
   });
 })(jQuery);

@@ -7,6 +7,10 @@ Author URI:     http://jelgue.net/
 Version:        1.0.1
 */
 
+html {
+  overflow-y: scroll;
+}
+
 body {
     padding-top: 60px;
   }

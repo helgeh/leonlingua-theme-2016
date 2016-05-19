@@ -41,15 +41,15 @@ add_action('wp_enqueue_scripts', 'leonlingua_theme_js');
 
 
 function leonlingua_register_sidebars() {
-  // register_sidebar(array(
-  //   'id' => 'sidebar1',
-  //   'name' => 'Main Sidebar',
-  //   'description' => 'Used on every page BUT the homepage page template.',
-  //   'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  //   'after_widget' => '</div>',
-  //   'before_title' => '<h4 class="widgettitle">',
-  //   'after_title' => '</h4>',
-  //   ));
+  register_sidebar(array(
+    'id' => 'sidebar1',
+    'name' => 'Main Sidebar',
+    'description' => 'Used on blog pages.',
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget' => '</div>',
+    'before_title' => '<h4 class="widgettitle">',
+    'after_title' => '</h4>',
+    ));
 
   // register_sidebar(array(
   //   'id' => 'sidebar2',

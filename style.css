@@ -7,6 +7,10 @@ Author URI:     http://jelgue.net/
 Version:        1.0.1
 */
 
+html {
+  overflow-y: scroll;
+}
+
 body {
     padding-top: 60px;
   }
@@ -63,6 +67,30 @@ img.size-full.aligncenter {
 
 article.post_content.type-post {
 	margin-bottom: 40px;
+}
+
+.sidebar ul {
+	padding-left: 20px;
+}
+
+.dev {
+    position: fixed;
+    top: -33px;
+    right: 30px;
+    z-index: 99999;
+    background: rgb(5, 181, 132);
+    padding: 4px 14px 5px;
+    color: white;
+    border-left: 3px solid rgb(204, 234, 192);
+    border-right: 3px solid rgb(204, 234, 192);
+    border-bottom: 3px solid rgb(204, 234, 192);
+    border-radius: 0 0 3px 3px;
+    font-family: monospace;
+    font-weight: bold;
+    transition: transform .5s ease-out 1s;
+}
+body.loaded .dev {
+  transform: translateY(33px);
 }
 
 

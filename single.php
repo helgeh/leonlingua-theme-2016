@@ -13,9 +13,14 @@
         </div>
 
         <div class="row">
-          <article id="post-<?php the_ID(); ?>" <?php post_class('col-lg-12 post_content'); ?> role="article">
-							<?php the_content(); ?>
-					</article>
+          <div class="col-md-9">
+            <article id="post-<?php the_ID(); ?>" <?php post_class('post_content'); ?> role="article">
+  							<?php the_content(); ?>
+  					</article>
+          </div>
+          <div class="col-md-3">
+          <?php get_sidebar(); // sidebar 1 ?>
+          </div>
         </div>
 
       <?php endwhile; endif; ?>

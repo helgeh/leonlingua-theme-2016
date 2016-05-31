@@ -1,14 +1,19 @@
-			<footer class="row">
-			  <hr />
-        <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer1') ) : ?>
-        <?php endif; ?>
-        <?php //if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer2') ) : ?>
-        <?php //endif; ?>
-        <?php //if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer3') ) : ?>
-        <?php //endif; ?>
-
-			  <div class="col-lg-12">
-						<p class="attribution">&copy; <?php bloginfo('name'); ?></p>
+			<footer>
+				<div class="row">
+					<div class="col-lg-12">
+				  	<hr />
+					</div>
+	        <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer1') ) : ?>
+	        <?php endif; ?>
+	        <?php //if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer2') ) : ?>
+	        <?php //endif; ?>
+	        <?php //if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer3') ) : ?>
+	        <?php //endif; ?>
+				</div>
+				<div class="row">
+				  <div class="col-lg-12">
+							<p class="attribution">&copy; <?php bloginfo('name'); ?></p>
+					</div>
 				</div>
 			</footer>
 

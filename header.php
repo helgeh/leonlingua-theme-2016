@@ -63,6 +63,12 @@
       </div>
     </div>
 
+    <?php if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') : ?>
+    <div class="dev">
+      Hello Localhost!
+    </div>
+    <?php endif; ?>
+
 		<?php if ( is_front_page()  ) : ?>
 		<div class="frontpage_image"> 
 			<img src="http://test.leonlingua.com/wp-content/uploads/2013/06/schoolbus.jpg">

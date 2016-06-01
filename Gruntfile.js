@@ -53,9 +53,7 @@ module.exports = function(grunt) {
     grunt.task.run(['ftp_push:deploy']);
   });
 
-  // something to commit
-  
-  grunt.registerTask('release', ['bump', 'upload:prod']);
+  grunt.registerTask('release', ['bump', 'upload', 'upload:prod']);
   grunt.registerTask('stage', ['bump:prerelease', 'upload']);
   grunt.registerTask('default', ['upload']);
 

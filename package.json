@@ -10,5 +10,9 @@
   "bugs": {
     "url": "https://github.com/helgeh/leonlingua-theme-2016/issues"
   },
-  "homepage": "http://www.leonlingua.com/"
+  "homepage": "http://www.leonlingua.com/",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-ftp-push": "^1.0.0"
+  }
 }

@@ -11,6 +11,16 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     remote: paths.test,
+    bump: {
+	    options: {
+	      files: ['package.json', 'style.css'],
+	      updateConfigs: ['pkg'],
+	      commitMessage: 'bump to version %VERSION%',
+	      commitFiles: ['package.json', 'style.css'],
+	      tagName: '%VERSION%',
+	      pushTo: 'origin'
+	    }
+	  },
 		ftp_push: {
 	    deploy: {
 	      options: {
@@ -39,11 +49,12 @@ module.exports = function(grunt) {
   grunt.registerTask('upload', 'Upload files to ftp server.', function(target) {
     if (target === 'prod') {
     	grunt.config.set('remote', paths.prod);
-    	// grunt.task.run(['versionbump']);
     }
     grunt.task.run(['ftp_push:deploy']);
   });
 
-  // grunt.registerTask('default', ['upload']);
+  grunt.registerTask('release', ['bump', 'upload:prod']);
+  grunt.registerTask('stage', ['bump:prerelease', 'upload']);
+  grunt.registerTask('default', ['upload']);
 
 };

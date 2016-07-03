@@ -16,7 +16,7 @@
                * Adds HTML tag to selected content
                */
                ed.addButton( 'button_lightbox', {
-                    title : 'Add Lightbox',
+                    title : 'Toggle Lightbox',
                     // image : '/wp-content/themes/leonlingua-theme01.1/assets/lightbox_icon.gif', // '../wp-includes/images/smilies/icon_mrgreen.gif',
                     cmd: 'button_lightbox_cmd'
                });
@@ -26,9 +26,15 @@
                     // return_text = selected_text; // '<h1>' + selected_text + '</h1>';
                     var  selectedNode = ed.selection.getNode(),
                          linkNode = ed.dom.getParent( selectedNode, 'a[href]' );
-                    jQuery(selectedNode).addClass('fancybox fancybox.ajax')
-                    // ed.execCommand('mceInsertContent', 0, return_text);
+                    if (jQuery(selectedNode).hasClass('fancybox'))
+                         jQuery(selectedNode).removeClass('fancybox fancybox.ajax');
+                    else
+                         jQuery(selectedNode).addClass('fancybox fancybox.ajax');
                });
+               ed.onNodeChange.add(function(ed, cm, e) {
+                    var  selectedNode = ed.selection.getNode();
+                    cm.setActive('button_lightbox', jQuery(selectedNode).hasClass('fancybox'));
+                });
           },
           createControl : function(n, cm) {
                return null;

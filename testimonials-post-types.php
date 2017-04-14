@@ -21,7 +21,8 @@ function create_posttype()
       'public' => true,
       'has_archive' => true,
       'rewrite' => array('slug' => 'stories'),
-      'menu_position' => 20
+      'menu_position' => 20,
+      'menu_icon'   => 'dashicons-format-quote'
     )
   );
 }

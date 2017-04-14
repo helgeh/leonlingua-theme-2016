@@ -1,5 +1,17 @@
 <?php
 
+
+// DEBUGGING:
+
+// function console_log( $data ){
+//   echo '<script>';
+//   echo 'console.log('. json_encode( $data ) .')';
+//   echo '</script>';
+// }
+
+
+
+
 add_filter('show_admin_bar', '__return_false');
 
 add_action( 'init', 'create_posttype' );
@@ -20,7 +32,7 @@ function create_posttype() {
   );
 }
 
-function leonlingua_theme_styles()  
+function leonlingua_theme_styles()
 {
   wp_register_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1.0', 'all' );
   wp_register_style( 'fancybox', get_template_directory_uri() . '/css/jquery.fancybox.css', array(), '1.0', 'all' );
@@ -47,7 +59,7 @@ function leonlingua_theme_js()
 
   wp_enqueue_script('jquery');
   wp_enqueue_script('bootstrap', array('jQuery'), '1.1', true);
-  
+
   wp_enqueue_script('modernizr', array('jQuery'), '1.1', true);
 
   wp_enqueue_script('fancybox', array('jQuery'), '1.1', true);
@@ -110,8 +122,8 @@ add_action( 'widgets_init', 'leonlingua_register_sidebars' );
 
 function leonlingua_main_nav() {
   // display the wp3 menu if available
-    wp_nav_menu( 
-      array( 
+    wp_nav_menu(
+      array(
         'menu' => 'main_nav', /* menu name */
         'menu_class' => 'nav navbar-nav',
         'theme_location' => 'main_nav', /* where in the theme it's assigned */
@@ -213,7 +225,7 @@ function add_active_class($classes, $item, $args, $depth) {
 
 add_theme_support( 'menus' );            // wp menus
 register_nav_menus(                      // wp3+ menus
-  array( 
+  array(
     'main_nav' => 'The Main Menu',   // main nav in header
     'footer_links' => 'Footer Links' // secondary nav in footer
   )

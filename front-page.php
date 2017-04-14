@@ -40,7 +40,14 @@
             'post_type' => 'll_story',
             'orderby'   => 'meta_value',
             'meta_key'  => 'featured',
-            'order'     => 'ASC'
+            'order'     => 'ASC',
+            'meta_query' => array(
+              array(
+                  'key' => 'featured',
+                  'value' => 0,
+                  'compare' => '>'
+              )
+            )
           );
           $the_query = new WP_Query( $args );
         ?>

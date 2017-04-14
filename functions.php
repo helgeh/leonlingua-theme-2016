@@ -20,7 +20,7 @@ function leonlingua_theme_styles()
 {
   wp_register_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1.0', 'all' );
   wp_register_style( 'fancybox', get_template_directory_uri() . '/css/jquery.fancybox.css', array(), '1.0', 'all' );
-  wp_register_style( 'll-style', get_stylesheet_directory_uri() . '/style.css', array(), '1.0', 'all' );
+  wp_register_style( 'll-style', get_stylesheet_directory_uri() . '/style.css', array(), '1.1', 'all' );
   wp_enqueue_style( 'bootstrap' );
   wp_enqueue_style( 'dashicons' );
   wp_enqueue_style( 'fancybox');

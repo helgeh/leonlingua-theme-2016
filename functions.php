@@ -2,6 +2,23 @@
 
 add_filter('show_admin_bar', '__return_false');
 
+add_action( 'init', 'create_posttype' );
+function create_posttype() {
+  register_post_type( 'll_story',
+    array(
+      'labels' => array(
+        'name' => __( 'Testimonials' ),
+        'singular_name' => __( 'Testimonial' ),
+        'add_new_item' => __( 'Add New Testimonial' ),
+        'edit_item' => __( 'Edit Testimonial' )
+      ),
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array('slug' => 'stories'),
+      'menu_position' => 20
+    )
+  );
+}
 
 function leonlingua_theme_styles()  
 {
@@ -122,7 +139,7 @@ class description_walker extends Walker_Nav_Menu
 
     $classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
-    $class_names .= join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
+    $class_names .= join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
     $class_names = ' class="'. esc_attr( $class_names ) . '"';
 
     $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
@@ -168,11 +185,22 @@ class description_walker extends Walker_Nav_Menu
 }
 
 
-add_filter('nav_menu_css_class', 'add_active_class', 10, 2 );
-function add_active_class($classes, $item) {
+add_filter('nav_menu_css_class', 'add_active_class', 10, 4 );
+function add_active_class($classes, $item, $args, $depth) {
   $is_active = FALSE;
-  if ( ($item->menu_item_parent == 0 && in_array('current-menu-item', $classes))
-    || (in_array('current_page_parent', $classes)) ) {
+  $is_custom_post_type = is_post_type_archive('ll_story') || is_singular('ll_story');
+  if ( $item->current ||
+      (
+        in_array('current-menu-item', $classes)
+      ) ||
+      (
+        in_array('current_page_parent', $classes) && !$is_custom_post_type
+      ) ||
+      (
+        in_array('menu-item-object-ll_story', $classes) && $is_custom_post_type
+      )
+    )
+  {
     $is_active = TRUE;
   }
   if ($is_active) {

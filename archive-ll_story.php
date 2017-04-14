@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="page-header">
-              <h1>Testimonials!</h1>
+              <h1><small>Our students own stories</small></h1>
             </div>
           </div>
         </div>

@@ -1,5 +1,7 @@
 <?php
 
+define( 'LL_TESTIMONIAL_POST_TYPE', 'll_story' );
+
 
 define( 'ACF_LITE', true );
 include_once('advanced-custom-fields/acf.php');
@@ -8,7 +10,7 @@ include_once('advanced-custom-fields/acf.php');
 add_action( 'init', 'create_posttype' );
 function create_posttype()
 {
-  register_post_type( 'll_story',
+  register_post_type( LL_TESTIMONIAL_POST_TYPE,
     array(
       'labels' => array(
         'name' => __( 'Testimonials' ),
@@ -23,6 +25,12 @@ function create_posttype()
     )
   );
 }
+
+function remove_yoast_metabox_for_testimonials(){
+    remove_meta_box('wpseo_meta', LL_TESTIMONIAL_POST_TYPE, 'normal');
+}
+add_action( 'add_meta_boxes', 'remove_yoast_metabox_for_testimonials',11 );
+
 
 if (function_exists("register_field_group"))
 {
@@ -87,7 +95,7 @@ if (function_exists("register_field_group"))
 				array (
 					'param' => 'post_type',
 					'operator' => '==',
-					'value' => 'll_story',
+					'value' => LL_TESTIMONIAL_POST_TYPE,
 					'order_no' => 0,
 					'group_no' => 0,
 				),
@@ -116,3 +124,25 @@ if (function_exists("register_field_group"))
 		'menu_order' => 0,
 	));
 }
+
+
+/*
+	Adjust the default query for testimonials. Sort them according to the "featured" custom field
+*/
+
+function my_pre_get_posts( $query )
+{
+	if( is_admin() ) {
+		return $query;
+	}
+
+	if( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == LL_TESTIMONIAL_POST_TYPE )
+	{
+		$query->set('orderby', 'meta_value');
+		$query->set('meta_key', 'featured');
+		$query->set('order', 'ASC');
+	}
+
+	return $query;
+}
+add_action('pre_get_posts', 'my_pre_get_posts');

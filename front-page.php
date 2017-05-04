@@ -31,28 +31,28 @@
 
       </div>
 
+      <?php 
+        $args = array(
+          'post_type' => 'll_story',
+          'orderby'   => 'meta_value',
+          'meta_key'  => 'featured',
+          'order'     => 'ASC',
+          'meta_query' => array(
+            array(
+                'key' => 'featured',
+                'value' => 0,
+                'compare' => '>'
+            )
+          )
+        );
+        $the_query = new WP_Query( $args );
+      ?>
+      <?php if ( $the_query->have_posts() ) : ?>
+      
       <hr>
 
       <div class="container-fluid testimonials">
 
-        <?php 
-          $args = array(
-            'post_type' => 'll_story',
-            'orderby'   => 'meta_value',
-            'meta_key'  => 'featured',
-            'order'     => 'ASC',
-            'meta_query' => array(
-              array(
-                  'key' => 'featured',
-                  'value' => 0,
-                  'compare' => '>'
-              )
-            )
-          );
-          $the_query = new WP_Query( $args );
-        ?>
-        <?php if ( $the_query->have_posts() ) : ?>
-        
         <a href="/testimonials" title="Read the stories" class="blurbs">
 
           <div class="row">
@@ -76,8 +76,8 @@
           <a href="/testimonials" class="link">Read the stories</a> - <a href="https://goo.gl/forms/CChmQW3fLdaKb4yU2" class="link" target="_blank">Take our survey</a>
         </p>
 
-        <?php endif; ?>
-
       </div>
+
+      <?php endif; ?>
 
 <?php get_footer(); ?>

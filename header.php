@@ -19,7 +19,7 @@
       <script src="../js/html5shiv.js"></script>
       <script src="../js/respond.min.js"></script>
     <![endif]-->
-    <?php if (getenv('HTTP_HOST') == 'www.leonlingua.com') : ?>
+    <?php if ($_SERVER['HTTP_HOST'] == 'www.leonlingua.com') : ?>
     <script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -1,14 +1,28 @@
 <?php
 
+
+// DEBUGGING:
+
+// function console_log( $data ){
+//   echo '<script>';
+//   echo 'console.log('. json_encode( $data ) .')';
+//   echo '</script>';
+// }
+
+
+
+
 add_filter('show_admin_bar', '__return_false');
 
+include_once('testimonials-post-types.php');
 
-function leonlingua_theme_styles()  
+function leonlingua_theme_styles()
 {
   wp_register_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1.0', 'all' );
   wp_register_style( 'fancybox', get_template_directory_uri() . '/css/jquery.fancybox.css', array(), '1.0', 'all' );
-  wp_register_style( 'll-style', get_stylesheet_directory_uri() . '/style.css', array(), '1.0', 'all' );
+  wp_register_style( 'll-style', get_stylesheet_directory_uri() . '/style.css', array(), '1.1', 'all' );
   wp_enqueue_style( 'bootstrap' );
+  wp_enqueue_style( 'dashicons' );
   wp_enqueue_style( 'fancybox');
   wp_enqueue_style( 'll-style');
 }
@@ -30,7 +44,7 @@ function leonlingua_theme_js()
 
   wp_enqueue_script('jquery');
   wp_enqueue_script('bootstrap', array('jQuery'), '1.1', true);
-  
+
   wp_enqueue_script('modernizr', array('jQuery'), '1.1', true);
 
   wp_enqueue_script('fancybox', array('jQuery'), '1.1', true);
@@ -93,8 +107,8 @@ add_action( 'widgets_init', 'leonlingua_register_sidebars' );
 
 function leonlingua_main_nav() {
   // display the wp3 menu if available
-    wp_nav_menu( 
-      array( 
+    wp_nav_menu(
+      array(
         'menu' => 'main_nav', /* menu name */
         'menu_class' => 'nav navbar-nav',
         'theme_location' => 'main_nav', /* where in the theme it's assigned */
@@ -122,7 +136,7 @@ class description_walker extends Walker_Nav_Menu
 
     $classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
-    $class_names .= join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
+    $class_names .= join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
     $class_names = ' class="'. esc_attr( $class_names ) . '"';
 
     $output .= $indent . '<li id="menu-item-'. $item->ID . '"' . $value . $class_names .'>';
@@ -168,11 +182,22 @@ class description_walker extends Walker_Nav_Menu
 }
 
 
-add_filter('nav_menu_css_class', 'add_active_class', 10, 2 );
-function add_active_class($classes, $item) {
+add_filter('nav_menu_css_class', 'add_active_class', 10, 4 );
+function add_active_class($classes, $item, $args, $depth) {
   $is_active = FALSE;
-  if ( ($item->menu_item_parent == 0 && in_array('current-menu-item', $classes))
-    || (in_array('current_page_parent', $classes)) ) {
+  $is_custom_post_type = is_post_type_archive('ll_story') || is_singular('ll_story');
+  if ( $item->current ||
+      (
+        in_array('current-menu-item', $classes)
+      ) ||
+      (
+        in_array('current_page_parent', $classes) && !$is_custom_post_type
+      ) ||
+      (
+        in_array('menu-item-object-ll_story', $classes) && $is_custom_post_type
+      )
+    )
+  {
     $is_active = TRUE;
   }
   if ($is_active) {
@@ -185,7 +210,7 @@ function add_active_class($classes, $item) {
 
 add_theme_support( 'menus' );            // wp menus
 register_nav_menus(                      // wp3+ menus
-  array( 
+  array(
     'main_nav' => 'The Main Menu',   // main nav in header
     'footer_links' => 'Footer Links' // secondary nav in footer
   )

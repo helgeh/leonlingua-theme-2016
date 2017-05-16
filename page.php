@@ -2,8 +2,15 @@
 
 			<div class="main-section">
 
+      <?php
+        $alt_query = get_posts( array( 'name' => 'individual-needs', 'post_type' => 'page' ) );
+        if ($page = $alt_query[0]) {
+          $footnote = $page->post_content;
+        }
+      ?>
+
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					
+
         <div class="row">
           <div class="col-lg-12">
             <div class="page-header">
@@ -25,6 +32,18 @@
                 );
               ?>
 					</article>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+              <?php
+                $classes_page_ID = 298;
+                $parent_id = wp_get_post_parent_id( get_the_ID() );
+                if ($parent_id == $classes_page_ID && $footnote) {
+                  echo "<hr><div class='footnote'><h5>Individual needs:</h5><p class='small'>" . $footnote . "</p></div>";
+                }
+              ?>
+          </div>
         </div>
 
       <?php endwhile; endif; ?>

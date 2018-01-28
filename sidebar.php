@@ -40,7 +40,7 @@
                     <a href="http://conjugator.reverso.net/conjugation-spanish.html" target="_blank" title="Reverso">conjugator.reverso.net</a>
                   </li>
                   <li>
-                    <a href="http://www.spanishdict.com/" target="_blank" title="SpanishDict">SpanishDict</a>
+                    <a href="http://www.spanishdict.com/" target="_blank" title="SpanishDict">spanishdict.com</a>
                   </li>
                 </ul>
               </div>

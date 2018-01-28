@@ -18,7 +18,7 @@ module.exports = function(grunt) {
         commitMessage: 'bump to version %VERSION%',
         commitFiles: ['package.json', 'style.css'],
         tagName: '%VERSION%',
-        pushTo: 'origin'
+        push: false//'origin'
       }
     },
     ftp_push: {
@@ -27,7 +27,8 @@ module.exports = function(grunt) {
           authKey: 'authKey1',
           host: 'ftp.domeneshop.no',
           dest: '<%= serverpath %>',
-          port: 21
+          port: 21,
+          incrementalUpdates: false
         },
         files: [
           {

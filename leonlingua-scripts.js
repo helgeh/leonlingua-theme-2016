@@ -18,8 +18,8 @@
 
     $(".fancybox").fancybox({
       margin : [5, 5, 5, 5],
-      autoSize: false,
-      width: '95%'
+      width: '95%',
+      type: 'iframe'
     });
 
     // this is for the dev panel

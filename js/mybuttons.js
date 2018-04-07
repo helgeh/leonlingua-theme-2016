@@ -26,10 +26,18 @@
                     // return_text = selected_text; // '<h1>' + selected_text + '</h1>';
                     var  selectedNode = ed.selection.getNode(),
                          linkNode = ed.dom.getParent( selectedNode, 'a[href]' );
+                    if (selectedNode.nodeName === 'P') {
+                         var range = ed.selection.getRng();
+                         if (range.startContainer.nodeType === 3)
+                              range.selectNode(range.startContainer);
+                         else if (range.endContainer.nodeType === 3)
+                              range.selectNode(range.endContainer);
+                         selectedNode = range.commonAncestorContainer;
+                    }
                     if (jQuery(selectedNode).hasClass('fancybox'))
-                         jQuery(selectedNode).removeClass('fancybox fancybox.ajax');
+                         jQuery(selectedNode).removeClass('fancybox');
                     else
-                         jQuery(selectedNode).addClass('fancybox fancybox.ajax');
+                         jQuery(selectedNode).addClass('fancybox');
                });
                ed.onNodeChange.add(function(ed, cm, e) {
                     var  selectedNode = ed.selection.getNode();

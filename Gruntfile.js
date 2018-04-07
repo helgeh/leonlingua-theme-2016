@@ -18,7 +18,8 @@ module.exports = function(grunt) {
         commitMessage: 'bump to version %VERSION%',
         commitFiles: ['package.json', 'style.css'],
         tagName: '%VERSION%',
-        pushTo: 'origin'
+        push: false,//'origin'
+        incrementalUpdates: false
       }
     },
     ftp_push: {

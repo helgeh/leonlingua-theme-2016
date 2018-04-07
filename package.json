@@ -1,6 +1,6 @@
 {
   "name": "leonlingua-theme-2016",
-  "version": "1.0.16",
+  "version": "1.0.17-0",
   "description": "Theme for Leonlingua homepage. Looks like the 2015 version with wpbs-theme as a base and then Bootswatch theme Journal on top. And some small customizations. The theme is no longer set up as child theme.",
   "repository": {
     "type": "git",

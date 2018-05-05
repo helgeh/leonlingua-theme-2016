@@ -16,6 +16,7 @@
               <article id="post-<?php the_ID(); ?>" <?php post_class('post_content'); ?> role="article">
                 <header>
                   <?php the_title( sprintf( '<h2 class="page-title screen-reader-text"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+                  <p class="meta"><span class="date"><?php echo get_the_date(); ?></span></p>
                 </header>
                 <section>
                   <?php the_excerpt(); ?>

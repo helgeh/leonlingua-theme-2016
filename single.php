@@ -13,6 +13,14 @@
         </div>
 
         <div class="row">
+          <div class="col-lg-12">
+            <div class="story-meta">
+              <p class="meta">Written on <span class="date"><?php echo get_the_date(); ?></span> by <span><?php the_author(); ?></span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-9">
             <article id="post-<?php the_ID(); ?>" <?php post_class('post_content'); ?> role="article">
   							<?php the_content(); ?>

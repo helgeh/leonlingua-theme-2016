@@ -10,6 +10,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="color-scheme" content="only light" />
 		<?php if ( is_singular() && pings_open( get_queried_object() ) ) : ?>
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 		<?php endif; ?>
@@ -19,6 +20,7 @@
       <script src="../js/html5shiv.js"></script>
       <script src="../js/respond.min.js"></script>
     <![endif]-->
+    <meta name="facebook-domain-verification" content="nhqegk2gu5n8i2t6gbyklrnihsnydm" />
     <?php if ($_SERVER['HTTP_HOST'] == 'www.leonlingua.com') : ?>
     <script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
